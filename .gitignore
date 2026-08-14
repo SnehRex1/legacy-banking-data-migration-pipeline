@@ -139,3 +139,15 @@ settings.local.*
 # Docker local overrides
 # -------------------------
 docker-compose.override.yml
+
+# -----------------------------
+# Generated Hive output
+# -----------------------------
+hive_warehouse/*_clean/
+hive_warehouse/*_quarantine/
+hive_warehouse/transactions_clean_partitioned/
+
+# -----------------------------
+# Generated Spark / ETL output
+# -----------------------------
+processed_data/
