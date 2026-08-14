@@ -17,6 +17,9 @@ analytics.
 
 ## Architecture
 
+
+<img width="2780" height="1536" alt="image" src="https://github.com/user-attachments/assets/ecd2430f-06a4-4bfc-9b0d-3b759b57a572" />
+
 ![Legacy Banking Data Migration
 Architecture](architecture%20diagram/architecture.png)
 
