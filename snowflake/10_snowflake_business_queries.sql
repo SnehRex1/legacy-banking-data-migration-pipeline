@@ -1,0 +1,149 @@
+USE DATABASE BANKING_DB;
+USE SCHEMA PUBLIC;
+
+-- ============================================================
+-- 1. OVERALL TRANSACTION SUMMARY
+-- ============================================================
+
+SELECT
+    COUNT(*) AS TOTAL_TRANSACTIONS,
+    SUM(AMOUNT) AS TOTAL_TRANSACTION_AMOUNT,
+    AVG(AMOUNT) AS AVG_TRANSACTION_AMOUNT,
+    MIN(AMOUNT) AS MIN_TRANSACTION_AMOUNT,
+    MAX(AMOUNT) AS MAX_TRANSACTION_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED;
+
+
+-- ============================================================
+-- 2. TRANSACTION SUMMARY BY TYPE
+-- ============================================================
+
+SELECT
+    TRANSACTION_TYPE,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_AMOUNT,
+    AVG(AMOUNT) AS AVG_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY TRANSACTION_TYPE
+ORDER BY TOTAL_AMOUNT DESC;
+
+
+-- ============================================================
+-- 3. TOP 10 CUSTOMERS BY TRANSACTION VALUE
+-- ============================================================
+
+SELECT
+    CUSTOMER_ID,
+    CUSTOMER_NAME,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_TRANSACTION_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY CUSTOMER_ID, CUSTOMER_NAME
+ORDER BY TOTAL_TRANSACTION_AMOUNT DESC
+LIMIT 10;
+
+
+-- ============================================================
+-- 4. TOP 10 ACCOUNTS BY TRANSACTION VALUE
+-- ============================================================
+
+SELECT
+    ACCOUNT_ID,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_TRANSACTION_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY ACCOUNT_ID
+ORDER BY TOTAL_TRANSACTION_AMOUNT DESC
+LIMIT 10;
+
+
+-- ============================================================
+-- 5. DAILY TRANSACTION TREND
+-- ============================================================
+
+SELECT
+    TRANSACTION_DATE,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY TRANSACTION_DATE
+ORDER BY TRANSACTION_DATE;
+
+
+-- ============================================================
+-- 6. TRANSACTION DIRECTION ANALYSIS
+-- ============================================================
+
+SELECT
+    TRANSACTION_DIRECTION,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_AMOUNT,
+    AVG(AMOUNT) AS AVG_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY TRANSACTION_DIRECTION
+ORDER BY TOTAL_AMOUNT DESC;
+
+
+-- ============================================================
+-- 7. HIGH-VALUE TRANSACTIONS
+-- ============================================================
+
+SELECT
+    TRANSACTION_ID,
+    ACCOUNT_ID,
+    CUSTOMER_ID,
+    CUSTOMER_NAME,
+    TRANSACTION_DATE,
+    TRANSACTION_TYPE,
+    AMOUNT,
+    AMOUNT_CATEGORY
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+WHERE AMOUNT_CATEGORY = 'HIGH'
+ORDER BY AMOUNT DESC
+LIMIT 20;
+
+
+-- ============================================================
+-- 8. MONTHLY TRANSACTION ANALYSIS
+-- ============================================================
+
+SELECT
+    DATE_TRUNC('MONTH', TRANSACTION_DATE) AS TRANSACTION_MONTH,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_AMOUNT,
+    AVG(AMOUNT) AS AVG_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY DATE_TRUNC('MONTH', TRANSACTION_DATE)
+ORDER BY TRANSACTION_MONTH;
+
+
+-- ============================================================
+-- 9. AMOUNT CATEGORY ANALYSIS
+-- ============================================================
+
+SELECT
+    AMOUNT_CATEGORY,
+    COUNT(*) AS TRANSACTION_COUNT,
+    SUM(AMOUNT) AS TOTAL_AMOUNT,
+    AVG(AMOUNT) AS AVG_AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+GROUP BY AMOUNT_CATEGORY
+ORDER BY TOTAL_AMOUNT DESC;
+
+
+-- ============================================================
+-- 10. TOP 10 LARGEST TRANSACTIONS
+-- ============================================================
+
+SELECT
+    TRANSACTION_ID,
+    ACCOUNT_ID,
+    CUSTOMER_ID,
+    CUSTOMER_NAME,
+    TRANSACTION_DATE,
+    TRANSACTION_TYPE,
+    TRANSACTION_DIRECTION,
+    AMOUNT
+FROM BANKING_TRANSACTIONS_TRANSFORMED
+ORDER BY AMOUNT DESC
+LIMIT 10;

@@ -1,0 +1,18 @@
+CREATE OR REPLACE STORAGE INTEGRATION LEGACY_BANKING_S3_INT
+TYPE = EXTERNAL_STAGE
+STORAGE_PROVIDER = 'S3'
+ENABLED = TRUE
+STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::148852035837:role/LegacyBankingSnowflakeRole'
+STORAGE_ALLOWED_LOCATIONS = (
+    's3://legacy-banking-data/processed/'
+);
+
+DESC STORAGE INTEGRATION LEGACY_BANKING_S3_INT;
+
+
+SELECT SYSTEM$VALIDATE_STORAGE_INTEGRATION(
+    'LEGACY_BANKING_S3_INT',
+    's3://legacy-banking-data/processed/',
+    'validation_test.txt',
+    'list'
+);

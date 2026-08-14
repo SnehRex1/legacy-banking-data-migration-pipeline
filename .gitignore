@@ -1,0 +1,141 @@
+# ============================================================
+# LEGACY BANKING DATA MIGRATION - GITIGNORE
+# ============================================================
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# -------------------------
+# Environment / Secrets
+# -------------------------
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.crt
+credentials.json
+secrets.json
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# Hive / Hadoop Runtime
+# -------------------------
+metastore_db/
+metastore_db_backup/
+
+hive-warehouse/
+hive_docker_data/
+hive-docker-data/
+
+# Derby / Hive runtime files
+derby.log
+derby.properties
+
+# Hive temporary/runtime files
+tmp/
+temp/
+
+# -------------------------
+# Spark / PySpark
+# -------------------------
+.sparkStaging/
+spark-warehouse/
+checkpoints/
+
+# Spark event logs
+spark-events/
+
+# -------------------------
+# Generated / Temporary Data
+# -------------------------
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Generated CSV/JSON/Parquet output
+# Uncomment if these are generated locally
+# *.parquet
+# *.csv
+# *.json
+
+# -------------------------
+# Hadoop / Spark Success Files
+# -------------------------
+_SUCCESS
+_SUCCESS.crc
+*.crc
+
+# -------------------------
+# OS Files
+# -------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------
+# VS Code
+# -------------------------
+.vscode/
+!.vscode/settings.json
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Terraform (if used later)
+# -------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+
+# -------------------------
+# Database Files
+# -------------------------
+*.db
+*.sqlite
+*.sqlite3
+
+# -------------------------
+# Backup Files
+# -------------------------
+*.old
+*.orig
+*~
+
+# -------------------------
+# Local Configuration
+# -------------------------
+config.local.*
+settings.local.*
+
+# -------------------------
+# Docker local overrides
+# -------------------------
+docker-compose.override.yml

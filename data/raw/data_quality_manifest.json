@@ -1,0 +1,30 @@
+{
+  "random_seed": 42,
+  "source_directory": "data/raw",
+  "files_modified_in_place": true,
+  "issues": {
+    "customers": {
+      "missing_city": 20,
+      "missing_segment": 20,
+      "duplicate_customer": 10
+    },
+    "accounts": {
+      "missing_customer_id": 20,
+      "invalid_balance": 10,
+      "orphan_customer_reference": 5
+    },
+    "transactions": {
+      "duplicate_transaction": 100,
+      "invalid_amount": 50,
+      "missing_account_id": 50,
+      "invalid_transaction_type": 50,
+      "future_transaction_date": 30,
+      "orphan_account_reference": 20
+    }
+  },
+  "output_row_counts": {
+    "customers": 10010,
+    "accounts": 15000,
+    "transactions": 100100
+  }
+}
