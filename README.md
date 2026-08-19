@@ -114,9 +114,6 @@ legacy-banking-data-migration/
 ├── data/
 │   └── *.csv
 │
-├── docs/
-│   └── project documentation
-│
 ├── hive/
 │   ├── 01_create_tables.sql
 │   ├── 02_load_raw_data.sql
